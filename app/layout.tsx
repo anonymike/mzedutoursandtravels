@@ -5,8 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { CookieConsent } from "@/components/cookie-consent"
 import { ChristmasPopup } from "@/components/christmas-popup"
 import { NewYearPopup } from "@/components/new-year-popup"
-import { CountdownTimer } from "@/components/countdown-timer"
-import { Fireworks } from "@/components/fireworks"
+import { DiscountBanner } from "@/components/discount-banner"
 import { NewYearWelcomeModal } from "@/components/new-year-welcome-modal"
 import "./globals.css"
 
@@ -54,9 +53,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
         {children}
-        <Fireworks />
         <CookieConsent />
-        <CountdownTimer />
+        <DiscountBanner />
         <ChristmasPopup />
         <NewYearPopup />
         <NewYearWelcomeModal />
