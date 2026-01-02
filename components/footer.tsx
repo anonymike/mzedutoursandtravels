@@ -129,17 +129,17 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p>© 2025 MZEDU TOURS & TRAVEL, TSAVO. All rights reserved.</p>
+            <p>© 2026 MZEDU TOURS & TRAVEL, TSAVO. All rights reserved.</p>
             <div className="flex flex-col md:flex-row items-center gap-6">
               <p>
-                Curated with ❤️{" "}
+                Curated with ❤️ by{" "}
                 <a
                   href="https://www.anonymiketech.online/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:text-accent transition font-medium"
                 >
-                  anonymiketech
+                  ANONYMIKETECH
                 </a>
               </p>
               <div className="flex gap-6">
