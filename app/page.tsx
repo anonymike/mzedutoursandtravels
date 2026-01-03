@@ -10,6 +10,7 @@ import Packages from "@/components/packages"
 import Booking from "@/components/booking"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import { DiscountBanner } from "@/components/discount-banner"
 
 export default function Home() {
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Home() {
 
   return (
     <>
+      <DiscountBanner />
       <Navbar />
       <main className="w-full pt-16">
         <Hero />
