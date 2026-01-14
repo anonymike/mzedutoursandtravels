@@ -23,6 +23,10 @@ export function NewYearWelcomeModal() {
       alt: "Blue kingfisher at Taita Hills",
     },
     {
+      src: "/man-eaters-location.jpg",
+      alt: "Man Eaters location sign",
+    },
+    {
       src: "/safari-leopard.jpg",
       alt: "Leopard in grassland",
     },
@@ -33,6 +37,10 @@ export function NewYearWelcomeModal() {
     {
       src: "/safari-elephants.jpg",
       alt: "Elephant herd at watering hole",
+    },
+    {
+      src: "/tsavo-west-park.jpg",
+      alt: "Tsavo West National Park",
     },
   ]
 
@@ -104,7 +112,7 @@ export function NewYearWelcomeModal() {
           <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         </button>
 
-        <div className="relative w-full h-40 sm:h-56 lg:h-64 overflow-hidden bg-black/30 flex-shrink-0">
+        <div className="relative w-full h-48 sm:h-64 lg:h-72 overflow-hidden bg-black/30 flex-shrink-0">
           {modalImages.map((image, index) => (
             <div
               key={index}

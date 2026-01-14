@@ -1,6 +1,57 @@
 "use client"
 
+import { useState, useEffect } from "react"
+
 export default function About() {
+  const [visibleImages, setVisibleImages] = useState<{ [key: number]: boolean }>({})
+
+  const aboutImages = [
+    {
+      src: "/safari-man-eaters-camp.jpg",
+      alt: "Tourists at Man Eaters camp",
+      span: "col-span-1 row-span-2",
+      delay: 0,
+    },
+    {
+      src: "/safari-guide-tourists.jpg",
+      alt: "Guide with happy tourists",
+      span: "col-span-1",
+      delay: 100,
+    },
+    {
+      src: "/safari-leopard.jpg",
+      alt: "Leopard in grassland",
+      span: "col-span-1",
+      delay: 200,
+    },
+    {
+      src: "/safari-ostrich.jpg",
+      alt: "Ostrich in savanna",
+      span: "col-span-1",
+      delay: 300,
+    },
+    {
+      src: "/taita-hills-kingfisher.jpg",
+      alt: "Blue kingfisher at Taita Hills",
+      span: "col-span-1",
+      delay: 400,
+    },
+    {
+      src: "/safari-elephants.jpg",
+      alt: "Elephant herd at watering hole",
+      span: "col-span-1",
+      delay: 500,
+    },
+  ]
+
+  useEffect(() => {
+    aboutImages.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleImages((prev) => ({ ...prev, [index]: true }))
+      }, aboutImages[index].delay)
+    })
+  }, [])
+
   return (
     <section id="about" className="py-24 px-6 md:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -46,23 +97,19 @@ export default function About() {
             </div>
           </div>
 
-          {/* Image Collage */}
-          <div className="relative h-96">
-            <div className="grid grid-cols-2 gap-4 h-full">
-              {/* Top left - large image */}
-              <div className="col-span-1 row-span-2 rounded-2xl overflow-hidden shadow-lg">
-                <img src="/safari-game-drive-vehicle-with-tourists.jpg" alt="Safari Game Drive" className="w-full h-full object-cover" />
-              </div>
-
-              {/* Top right */}
-              <div className="rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition">
-                <img src="/african-savanna-landscape-with-acacia-trees.jpg" alt="Savanna Landscape" className="w-full h-full object-cover" />
-              </div>
-
-              {/* Bottom right */}
-              <div className="rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition">
-                <img src="/wildlife-animals-zebras-and-antelopes-in-tsavo.jpg" alt="Tsavo Wildlife" className="w-full h-full object-cover" />
-              </div>
+          {/* Image Collage - Updated with new images and animations */}
+          <div className="relative">
+            <div className="grid grid-cols-3 gap-4 auto-rows-[200px] md:auto-rows-[180px]">
+              {aboutImages.map((image, index) => (
+                <div
+                  key={index}
+                  className={`${image.span} rounded-xl overflow-hidden shadow-lg transform transition-all duration-700 ease-out ${
+                    visibleImages[index] ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-8"
+                  } hover:shadow-2xl hover:scale-105`}
+                >
+                  <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-full object-cover" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
