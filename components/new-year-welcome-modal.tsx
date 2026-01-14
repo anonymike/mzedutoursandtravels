@@ -89,22 +89,22 @@ export function NewYearWelcomeModal() {
   return (
     <div
       onClick={handleBackdropClick}
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
     >
-      <div className="relative bg-gradient-to-br from-[#0F2C1E] via-[#1a4631] to-[#0F2C1E] rounded-xl sm:rounded-2xl w-full max-w-sm sm:max-w-3xl shadow-2xl border-2 border-[#D4AF37]/30 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-[#0F2C1E] via-[#1a4631] to-[#0F2C1E] rounded-lg sm:rounded-2xl w-full max-w-xs sm:max-w-2xl lg:max-w-3xl shadow-2xl border border-[#D4AF37]/30 overflow-hidden flex flex-col max-h-[90vh] sm:max-h-[85vh]">
         {/* Animated background elements */}
-        <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-32 sm:w-40 h-32 sm:h-40 bg-[#4ECDC4]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-24 sm:w-32 h-24 sm:h-32 bg-[#4ECDC4]/10 rounded-full blur-3xl"></div>
 
         <button
           onClick={handleClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 hover:bg-white/20 active:bg-white/30 rounded-full transition-all duration-200 z-10 cursor-pointer"
+          className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1 sm:p-1.5 hover:bg-white/20 active:bg-white/30 rounded-full transition-all duration-200 z-10 cursor-pointer"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
         </button>
 
-        <div className="relative w-full aspect-video sm:aspect-auto sm:h-64 overflow-hidden bg-black/30">
+        <div className="relative w-full h-40 sm:h-56 lg:h-64 overflow-hidden bg-black/30 flex-shrink-0">
           {modalImages.map((image, index) => (
             <div
               key={index}
@@ -123,62 +123,60 @@ export function NewYearWelcomeModal() {
           {/* Navigation Buttons */}
           <button
             onClick={prevImage}
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-1.5 sm:p-2 bg-black/50 hover:bg-black/70 rounded-full transition-all z-20 cursor-pointer"
+            className="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 p-1 sm:p-2 bg-black/50 hover:bg-black/70 rounded-full transition-all z-20 cursor-pointer"
             aria-label="Previous image"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </button>
           <button
             onClick={nextImage}
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 sm:p-2 bg-black/50 hover:bg-black/70 rounded-full transition-all z-20 cursor-pointer"
+            className="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 p-1 sm:p-2 bg-black/50 hover:bg-black/70 rounded-full transition-all z-20 cursor-pointer"
             aria-label="Next image"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </button>
 
           {/* Image Indicators */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+          <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2">
             {modalImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                  index === currentImageIndex ? "bg-[#D4AF37] w-6" : "bg-white/50"
+                className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all cursor-pointer ${
+                  index === currentImageIndex ? "bg-[#D4AF37] w-5 sm:w-6" : "bg-white/50"
                 }`}
               />
             ))}
           </div>
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 p-5 sm:p-8 md:p-12 text-center">
-          <div className="text-4xl sm:text-5xl mb-4 sm:mb-6 animate-bounce">🎉 🥳 🎊</div>
+        <div className="relative z-10 p-3 sm:p-6 md:p-8 text-center flex flex-col flex-1 overflow-y-auto">
+          <div className="text-2xl sm:text-3xl mb-2 sm:mb-3 animate-bounce">🎉 🥳 🎊</div>
 
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-4">
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1 sm:mb-2">
             Happy <span className="text-[#D4AF37]">2026</span>!
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 leading-relaxed">
-            Welcome to a brand new year of unforgettable adventures! Start 2026 with an amazing safari experience across
-            Kenya's most beautiful destinations.
+          <p className="text-xs sm:text-sm md:text-base text-white/80 mb-3 sm:mb-4 leading-relaxed">
+            Welcome to a brand new year of unforgettable adventures! Start 2026 with an amazing safari experience.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="bg-white/5 border border-[#D4AF37]/30 rounded-lg p-3 sm:p-4">
-              <div className="text-2xl sm:text-3xl font-bold text-[#D4AF37] mb-1 sm:mb-2">30%</div>
-              <p className="text-white/70 text-xs sm:text-sm">Early Bird Discount</p>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-5 flex-shrink-0">
+            <div className="bg-white/5 border border-[#D4AF37]/30 rounded p-2 sm:p-3">
+              <div className="text-lg sm:text-2xl font-bold text-[#D4AF37] mb-0.5 sm:mb-1">30%</div>
+              <p className="text-white/70 text-xs">Early Bird</p>
             </div>
-            <div className="bg-white/5 border border-[#D4AF37]/30 rounded-lg p-3 sm:p-4">
-              <div className="text-2xl sm:text-3xl font-bold text-[#D4AF37] mb-1 sm:mb-2">All Year</div>
-              <p className="text-white/70 text-xs sm:text-sm">Valid through 2026</p>
+            <div className="bg-white/5 border border-[#D4AF37]/30 rounded p-2 sm:p-3">
+              <div className="text-lg sm:text-2xl font-bold text-[#D4AF37] mb-0.5 sm:mb-1">All Year</div>
+              <p className="text-white/70 text-xs">Valid 2026</p>
             </div>
-            <div className="bg-white/5 border border-[#D4AF37]/30 rounded-lg p-3 sm:p-4">
-              <div className="text-2xl sm:text-3xl font-bold text-[#D4AF37] mb-1 sm:mb-2">Premium</div>
-              <p className="text-white/70 text-xs sm:text-sm">Wildlife Experiences</p>
+            <div className="bg-white/5 border border-[#D4AF37]/30 rounded p-2 sm:p-3">
+              <div className="text-lg sm:text-2xl font-bold text-[#D4AF37] mb-0.5 sm:mb-1">Premium</div>
+              <p className="text-white/70 text-xs">Safaris</p>
             </div>
           </div>
 
-          <div className="flex flex-col gap-3 sm:gap-4 justify-center">
+          <div className="flex flex-col gap-2 sm:gap-3 justify-center flex-shrink-0">
             <button
               onClick={(e) => {
                 handleClose(e)
@@ -189,21 +187,19 @@ export function NewYearWelcomeModal() {
                   window.location.href = "/#booking"
                 }
               }}
-              className="px-6 sm:px-8 py-2.5 sm:py-3 bg-[#D4AF37] text-[#0F2C1E] font-bold rounded-full hover:bg-[#E5C158] active:scale-95 transition-all duration-200 shadow-lg cursor-pointer"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 bg-[#D4AF37] text-[#0F2C1E] font-bold rounded-full hover:bg-[#E5C158] active:scale-95 transition-all duration-200 shadow-lg cursor-pointer text-sm sm:text-base"
             >
-              Book Your Adventure
+              Book Now
             </button>
             <button
               onClick={handleClose}
-              className="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-[#D4AF37] text-[#D4AF37] font-bold rounded-full hover:bg-[#D4AF37]/10 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 border-2 border-[#D4AF37] text-[#D4AF37] font-bold rounded-full hover:bg-[#D4AF37]/10 active:scale-95 transition-all duration-200 cursor-pointer text-sm sm:text-base"
             >
-              Explore Packages
+              Explore
             </button>
           </div>
 
-          <p className="text-white/60 text-xs sm:text-sm mt-4 sm:mt-6">
-            Limited time offer! Book now and save big on your 2026 safari adventure.
-          </p>
+          <p className="text-white/60 text-xs mt-3 sm:mt-4 flex-shrink-0">Limited time offer!</p>
         </div>
       </div>
     </div>
