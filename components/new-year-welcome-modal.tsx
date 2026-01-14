@@ -1,23 +1,48 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
-import { X } from "lucide-react"
+import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
 export function NewYearWelcomeModal() {
   const [isOpen, setIsOpen] = useState(false)
   const [isAfterMidnight, setIsAfterMidnight] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const modalImages = [
+    {
+      src: "/safari-man-eaters-camp.jpg",
+      alt: "Tourists at Man Eaters camp",
+    },
+    {
+      src: "/safari-guide-tourists.jpg",
+      alt: "Guide with happy tourists",
+    },
+    {
+      src: "/taita-hills-kingfisher.jpg",
+      alt: "Blue kingfisher at Taita Hills",
+    },
+    {
+      src: "/safari-leopard.jpg",
+      alt: "Leopard in grassland",
+    },
+    {
+      src: "/safari-ostrich.jpg",
+      alt: "Ostrich in savanna",
+    },
+    {
+      src: "/safari-elephants.jpg",
+      alt: "Elephant herd at watering hole",
+    },
+  ]
 
   useEffect(() => {
     const checkIfAfterMidnight = () => {
       const now = new Date()
-      // Check if we're on January 1st, 2026 or later
       const isNewYearTime =
         now.getFullYear() >= 2026 || (now.getFullYear() === 2026 && now.getMonth() === 0 && now.getDate() >= 1)
 
       if (isNewYearTime) {
-        // Check if user hasn't seen the modal in this session
         const hasSeenModal = sessionStorage.getItem("newYearModalSeen")
         if (!hasSeenModal) {
           setIsAfterMidnight(true)
@@ -28,9 +53,17 @@ export function NewYearWelcomeModal() {
     }
 
     checkIfAfterMidnight()
-    const timer = setInterval(checkIfAfterMidnight, 60000) // Check every minute
+    const timer = setInterval(checkIfAfterMidnight, 60000)
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
+    const autoRotate = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % modalImages.length)
+    }, 5000)
+    return () => clearInterval(autoRotate)
+  }, [isOpen, modalImages.length])
 
   const handleClose = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation()
@@ -43,6 +76,14 @@ export function NewYearWelcomeModal() {
     }
   }
 
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % modalImages.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + modalImages.length) % modalImages.length)
+  }
+
   if (!isOpen || !isAfterMidnight) return null
 
   return (
@@ -50,7 +91,7 @@ export function NewYearWelcomeModal() {
       onClick={handleBackdropClick}
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
     >
-      <div className="relative bg-gradient-to-br from-[#0F2C1E] via-[#1a4631] to-[#0F2C1E] rounded-xl sm:rounded-2xl w-full max-w-sm sm:max-w-2xl shadow-2xl border-2 border-[#D4AF37]/30 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-[#0F2C1E] via-[#1a4631] to-[#0F2C1E] rounded-xl sm:rounded-2xl w-full max-w-sm sm:max-w-3xl shadow-2xl border-2 border-[#D4AF37]/30 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-32 sm:w-40 h-32 sm:h-40 bg-[#4ECDC4]/10 rounded-full blur-3xl"></div>
@@ -62,6 +103,52 @@ export function NewYearWelcomeModal() {
         >
           <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </button>
+
+        <div className="relative w-full aspect-video sm:aspect-auto sm:h-64 overflow-hidden bg-black/30">
+          {modalImages.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                index === currentImageIndex
+                  ? "opacity-100 translate-x-0"
+                  : index < currentImageIndex
+                    ? "opacity-0 -translate-x-full"
+                    : "opacity-0 translate-x-full"
+              }`}
+            >
+              <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-full object-cover" />
+            </div>
+          ))}
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevImage}
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-1.5 sm:p-2 bg-black/50 hover:bg-black/70 rounded-full transition-all z-20 cursor-pointer"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 sm:p-2 bg-black/50 hover:bg-black/70 rounded-full transition-all z-20 cursor-pointer"
+            aria-label="Next image"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          </button>
+
+          {/* Image Indicators */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+            {modalImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
+                  index === currentImageIndex ? "bg-[#D4AF37] w-6" : "bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Content */}
         <div className="relative z-10 p-5 sm:p-8 md:p-12 text-center">
@@ -95,12 +182,10 @@ export function NewYearWelcomeModal() {
             <button
               onClick={(e) => {
                 handleClose(e)
-                // Scroll to booking section
                 const bookingElement = document.getElementById("booking")
                 if (bookingElement) {
                   bookingElement.scrollIntoView({ behavior: "smooth" })
                 } else {
-                  // If on different page, navigate to home with hash
                   window.location.href = "/#booking"
                 }
               }}

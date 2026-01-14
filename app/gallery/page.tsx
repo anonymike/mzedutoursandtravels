@@ -65,6 +65,38 @@ const galleryItems = [
     alt: "Buffalo Herd",
     title: "Wild Giants",
   },
+  {
+    id: 102,
+    type: "image",
+    category: "wildlife",
+    src: "/taita-hills-kingfisher.jpg",
+    alt: "Blue kingfisher at Taita Hills",
+    title: "Taita Hills Kingfisher",
+  },
+  {
+    id: 103,
+    type: "image",
+    category: "wildlife",
+    src: "/safari-leopard.jpg",
+    alt: "Leopard in grassland",
+    title: "Spotted Leopard",
+  },
+  {
+    id: 104,
+    type: "image",
+    category: "wildlife",
+    src: "/safari-ostrich.jpg",
+    alt: "Ostrich in savanna",
+    title: "Savanna Ostrich",
+  },
+  {
+    id: 105,
+    type: "image",
+    category: "wildlife",
+    src: "/safari-elephants.jpg",
+    alt: "Elephant herd at watering hole",
+    title: "Amboseli Elephants",
+  },
 
   // Fleet - Updated with actual vehicle images
   {
@@ -157,6 +189,22 @@ const galleryItems = [
     alt: "Savanna Landscape",
     title: "African Savanna",
   },
+  {
+    id: 106,
+    type: "image",
+    category: "landscapes",
+    src: "/man-eaters-location.jpg",
+    alt: "Man Eaters location",
+    title: "Man Eaters Location",
+  },
+  {
+    id: 107,
+    type: "image",
+    category: "landscapes",
+    src: "/tsavo-west-park.jpg",
+    alt: "Tsavo West National Park",
+    title: "Tsavo West Park",
+  },
 
   // Adventures - Replaced video placeholders with actual images
   {
@@ -198,6 +246,22 @@ const galleryItems = [
     src: "/african-wildlife-safari-with-zebras-giraffes-and-l.jpg",
     alt: "Safari Adventure",
     title: "Safari Adventure",
+  },
+  {
+    id: 100,
+    type: "image",
+    category: "adventures",
+    src: "/safari-man-eaters-camp.jpg",
+    alt: "Tourists at Man Eaters camp",
+    title: "Man Eaters Camp Experience",
+  },
+  {
+    id: 101,
+    type: "image",
+    category: "adventures",
+    src: "/safari-guide-tourists.jpg",
+    alt: "Guide with happy tourists",
+    title: "Memorable Safari Moments",
   },
 ]
 
