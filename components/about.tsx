@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 
 export default function About() {
   const [counts, setCounts] = useState({ satisfaction: 0, experience: 0, guides: 0 })
-  const [imagesLoaded, setImagesLoaded] = useState(false)
 
   const aboutImages = [
     { src: "/safari-man-eaters-camp.jpg", alt: "Man Eaters camp" },
@@ -49,10 +48,6 @@ export default function About() {
     if (section) observer.observe(section)
 
     return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    setImagesLoaded(true)
   }, [])
 
   return (
@@ -116,19 +111,12 @@ export default function About() {
             </div>
           </div>
 
+          {/* Images - Simple grid without animation */}
           <div className="flex justify-center items-center">
             <div className="grid grid-cols-3 gap-4 md:gap-6 w-full max-w-md">
               {aboutImages.map((image, index) => (
-                <div
-                  key={index}
-                  className={`transform transition-all duration-700 ease-out ${
-                    imagesLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
-                  } hover:scale-110 hover:shadow-2xl cursor-pointer`}
-                  style={{
-                    transitionDelay: imagesLoaded ? `${index * 80}ms` : "0ms",
-                  }}
-                >
-                  <div className="relative w-full aspect-square rounded-full overflow-hidden shadow-lg bg-gray-200">
+                <div key={index} className="flex justify-center">
+                  <div className="relative w-full aspect-square rounded-full overflow-hidden shadow-lg bg-gray-200 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
                     <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-full object-cover" />
                   </div>
                 </div>

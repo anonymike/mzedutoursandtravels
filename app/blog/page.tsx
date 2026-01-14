@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Calendar, Clock, User, BookOpen, Search, ArrowRight, Shield, Filter, X } from "lucide-react"
+import { Calendar, Clock, User, BookOpen, Search, ArrowRight, Filter, X } from "lucide-react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
@@ -174,7 +174,7 @@ export default function BlogPage() {
         }`}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-6">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-center mb-6">
             {/* Search Bar */}
             <div className="relative w-full md:w-96">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -186,15 +186,6 @@ export default function BlogPage() {
                 className="w-full pl-12 pr-4 py-3 rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
               />
             </div>
-
-            {/* Admin Button */}
-            <Link
-              href="/auth/login"
-              className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <Shield className="w-5 h-5" />
-              Admin Login
-            </Link>
           </div>
 
           {/* Category Filter */}
@@ -271,15 +262,6 @@ export default function BlogPage() {
                   ))}
                 </div>
               </div>
-
-              {/* Admin Link in floating panel */}
-              <Link
-                href="/auth/login"
-                className="flex items-center justify-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-lg font-medium hover:bg-primary/20 transition-all duration-300 mt-4 text-sm"
-              >
-                <Shield className="w-4 h-4" />
-                Admin Login
-              </Link>
             </div>
           )}
         </div>
