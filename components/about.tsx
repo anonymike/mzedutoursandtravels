@@ -3,87 +3,56 @@
 import { useState, useEffect } from "react"
 
 export default function About() {
-  const [visibleImages, setVisibleImages] = useState<{ [key: number]: boolean }>({})
   const [counts, setCounts] = useState({ satisfaction: 0, experience: 0, guides: 0 })
-  const [showImages, setShowImages] = useState(false)
+  const [imagesLoaded, setImagesLoaded] = useState(false)
 
   const aboutImages = [
-    {
-      src: "/safari-man-eaters-camp.jpg",
-      alt: "Tourists at Man Eaters camp",
-      span: "col-span-1 row-span-2",
-      delay: 0,
-    },
-    {
-      src: "/safari-guide-tourists.jpg",
-      alt: "Guide with happy tourists",
-      span: "col-span-1",
-      delay: 100,
-    },
-    {
-      src: "/safari-leopard.jpg",
-      alt: "Leopard in grassland",
-      span: "col-span-1",
-      delay: 200,
-    },
-    {
-      src: "/safari-ostrich.jpg",
-      alt: "Ostrich in savanna",
-      span: "col-span-1",
-      delay: 300,
-    },
-    {
-      src: "/taita-hills-kingfisher.jpg",
-      alt: "Blue kingfisher at Taita Hills",
-      span: "col-span-1",
-      delay: 400,
-    },
-    {
-      src: "/safari-elephants.jpg",
-      alt: "Elephant herd at watering hole",
-      span: "col-span-1",
-      delay: 500,
-    },
+    { src: "/safari-man-eaters-camp.jpg", alt: "Man Eaters camp" },
+    { src: "/safari-guide-tourists.jpg", alt: "Guide with tourists" },
+    { src: "/taita-hills-kingfisher.jpg", alt: "Blue kingfisher" },
+    { src: "/safari-leopard.jpg", alt: "Leopard in grassland" },
+    { src: "/safari-ostrich.jpg", alt: "Ostrich in savanna" },
+    { src: "/safari-elephants.jpg", alt: "Elephant herd" },
   ]
 
   useEffect(() => {
-    const animateCounts = () => {
-      const duration = 2000 // 2 seconds
-      const steps = 60
-      const stepDuration = duration / steps
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let currentStep = 0
+          const steps = 60
+          const stepDuration = 1800 / steps
 
-      let currentStep = 0
-      const interval = setInterval(() => {
-        currentStep++
-        const progress = currentStep / steps
+          const interval = setInterval(() => {
+            currentStep++
+            const progress = currentStep / steps
 
-        setCounts({
-          satisfaction: Math.floor(100 * progress),
-          experience: Math.floor(20 * progress),
-          guides: Math.floor(50 * progress),
-        })
+            setCounts({
+              satisfaction: Math.floor(100 * progress),
+              experience: Math.floor(20 * progress),
+              guides: Math.floor(50 * progress),
+            })
 
-        if (currentStep === steps) {
-          clearInterval(interval)
-          setCounts({ satisfaction: 100, experience: 20, guides: 50 })
+            if (currentStep === steps) {
+              clearInterval(interval)
+              setCounts({ satisfaction: 100, experience: 20, guides: 50 })
+            }
+          }, stepDuration)
+
+          observer.disconnect()
         }
-      }, stepDuration)
+      },
+      { threshold: 0.5 },
+    )
 
-      return () => clearInterval(interval)
-    }
+    const section = document.getElementById("about")
+    if (section) observer.observe(section)
 
-    // Start count animation after a short delay
-    const timeout = setTimeout(animateCounts, 500)
-    return () => clearTimeout(timeout)
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
-    setShowImages(true)
-    aboutImages.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleImages((prev) => ({ ...prev, [index]: true }))
-      }, aboutImages[index].delay)
-    })
+    setImagesLoaded(true)
   }, [])
 
   return (
@@ -116,26 +85,30 @@ export default function About() {
             </p>
 
             <div className="grid grid-cols-3 gap-6">
-              <div className="text-center transform transition-all duration-500 hover:scale-110">
-                <div className="inline-block">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mb-3 shadow-lg">
-                    <div className="text-2xl md:text-3xl font-bold text-white">{counts.satisfaction}%</div>
+              <div className="flex flex-col items-center text-center group">
+                <div className="relative mb-4">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg transition-all duration-500 group-hover:shadow-2xl group-hover:scale-110">
+                    <span className="text-2xl md:text-3xl font-bold text-white tabular-nums">
+                      {counts.satisfaction}%
+                    </span>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground font-medium">Satisfaction Rate</p>
               </div>
-              <div className="text-center transform transition-all duration-500 hover:scale-110">
-                <div className="inline-block">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center mb-3 shadow-lg">
-                    <div className="text-2xl md:text-3xl font-bold text-white">{counts.experience}+</div>
+
+              <div className="flex flex-col items-center text-center group">
+                <div className="relative mb-4">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-lg transition-all duration-500 group-hover:shadow-2xl group-hover:scale-110">
+                    <span className="text-2xl md:text-3xl font-bold text-white tabular-nums">{counts.experience}+</span>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground font-medium">Years Experience</p>
               </div>
-              <div className="text-center transform transition-all duration-500 hover:scale-110">
-                <div className="inline-block">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-3 shadow-lg">
-                    <div className="text-2xl md:text-3xl font-bold text-white">{counts.guides}+</div>
+
+              <div className="flex flex-col items-center text-center group">
+                <div className="relative mb-4">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg transition-all duration-500 group-hover:shadow-2xl group-hover:scale-110">
+                    <span className="text-2xl md:text-3xl font-bold text-white tabular-nums">{counts.guides}+</span>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground font-medium">Tour Guides</p>
@@ -143,30 +116,21 @@ export default function About() {
             </div>
           </div>
 
-          <div
-            className={`relative transform transition-all duration-1000 ${showImages ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
-          >
-            <div className="grid grid-cols-3 gap-4 auto-rows-[200px] md:auto-rows-[180px]">
+          <div className="flex justify-center items-center">
+            <div className="grid grid-cols-3 gap-4 md:gap-6 w-full max-w-md">
               {aboutImages.map((image, index) => (
                 <div
                   key={index}
-                  className={`${image.span} overflow-hidden shadow-lg transform transition-all duration-700 ease-out ${
-                    visibleImages[index] ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-75 translate-y-8"
-                  } hover:shadow-2xl hover:scale-110 hover:-rotate-3`}
+                  className={`transform transition-all duration-700 ease-out ${
+                    imagesLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
+                  } hover:scale-110 hover:shadow-2xl cursor-pointer`}
                   style={{
-                    borderRadius: "50%",
-                    aspectRatio: "1",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    transitionDelay: imagesLoaded ? `${index * 80}ms` : "0ms",
                   }}
                 >
-                  <img
-                    src={image.src || "/placeholder.svg"}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                    style={{ borderRadius: "50%" }}
-                  />
+                  <div className="relative w-full aspect-square rounded-full overflow-hidden shadow-lg bg-gray-200">
+                    <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-full object-cover" />
+                  </div>
                 </div>
               ))}
             </div>
