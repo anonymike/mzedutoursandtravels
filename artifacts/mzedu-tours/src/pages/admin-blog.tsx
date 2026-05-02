@@ -262,8 +262,10 @@ export default function AdminBlogPage() {
       const uploadFormData = new FormData()
       uploadFormData.append("file", file)
 
+      const session = supabase ? (await supabase.auth.getSession()).data.session : null
       const response = await fetch("/api/upload", {
         method: "POST",
+        headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {},
         body: uploadFormData,
       })
 
