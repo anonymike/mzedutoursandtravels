@@ -3,46 +3,50 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* MZEDU TOURS & TRAVEL - Safari Theme */
+/* MZEDU TOURS & TRAVEL - Logo-Matched Theme */
+/* Logo palette: Gold #E8A020 · Teal #0099CC · Green #6DB33F */
 :root {
-  --background: #faf7f2;
-  --foreground: #1a1410;
+  --background: #f4f8fb;
+  --foreground: #0d1c2e;
   --card: #ffffff;
-  --card-foreground: #1a1410;
+  --card-foreground: #0d1c2e;
   --popover: #ffffff;
-  --popover-foreground: #1a1410;
+  --popover-foreground: #0d1c2e;
 
-  --primary: #c85a2e;
+  /* Golden amber — MZEDU logo text */
+  --primary: #E8A020;
   --primary-foreground: #ffffff;
 
-  --secondary: #d4a574;
+  /* Teal blue — "TOURS AND TRAVELS" logo text */
+  --secondary: #0099CC;
   --secondary-foreground: #ffffff;
 
-  --accent: #a0714f;
+  /* Safari green — top of logo circle gradient */
+  --accent: #5aaa28;
   --accent-foreground: #ffffff;
 
-  --muted: #e8dfd3;
-  --muted-foreground: #6b5d52;
-  --border: #ddd0c4;
-  --input: #f5f1eb;
-  --ring: #c85a2e;
+  --muted: #ddeaf4;
+  --muted-foreground: #4a6070;
+  --border: #c8dce8;
+  --input: #eef4f9;
+  --ring: #E8A020;
 
-  --chart-1: #c85a2e;
-  --chart-2: #d4a574;
-  --chart-3: #a0714f;
-  --chart-4: #8b6b5c;
-  --chart-5: #c9845b;
+  --chart-1: #E8A020;
+  --chart-2: #0099CC;
+  --chart-3: #5aaa28;
+  --chart-4: #1a6e96;
+  --chart-5: #c8810a;
 
   --radius: 0.5rem;
 
   --sidebar: #ffffff;
-  --sidebar-foreground: #1a1410;
-  --sidebar-primary: #c85a2e;
+  --sidebar-foreground: #0d1c2e;
+  --sidebar-primary: #E8A020;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #d4a574;
-  --sidebar-accent-foreground: #1a1410;
-  --sidebar-border: #ddd0c4;
-  --sidebar-ring: #c85a2e;
+  --sidebar-accent: #0099CC;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #c8dce8;
+  --sidebar-ring: #E8A020;
 
   --app-font-sans: 'Poppins', system-ui, sans-serif;
   --app-font-serif: 'Playfair Display', Georgia, serif;
@@ -50,36 +54,36 @@
 }
 
 .dark {
-  --background: #0f0d0a;
-  --foreground: #f5f1eb;
-  --card: #1a1410;
-  --card-foreground: #f5f1eb;
-  --popover: #1a1410;
-  --popover-foreground: #f5f1eb;
-  --primary: #e67c45;
-  --primary-foreground: #0f0d0a;
-  --secondary: #d4a574;
-  --secondary-foreground: #0f0d0a;
-  --accent: #c9845b;
-  --accent-foreground: #0f0d0a;
-  --muted: #2b2420;
-  --muted-foreground: #b8ad9f;
-  --border: #3a3430;
-  --input: #2b2420;
-  --ring: #e67c45;
-  --chart-1: #e67c45;
-  --chart-2: #d4a574;
-  --chart-3: #c9845b;
-  --chart-4: #a0714f;
-  --chart-5: #8b6b5c;
-  --sidebar: #1a1410;
-  --sidebar-foreground: #f5f1eb;
-  --sidebar-primary: #e67c45;
-  --sidebar-primary-foreground: #0f0d0a;
-  --sidebar-accent: #d4a574;
-  --sidebar-accent-foreground: #0f0d0a;
-  --sidebar-border: #3a3430;
-  --sidebar-ring: #e67c45;
+  --background: #071422;
+  --foreground: #e8f1f8;
+  --card: #0d1c2e;
+  --card-foreground: #e8f1f8;
+  --popover: #0d1c2e;
+  --popover-foreground: #e8f1f8;
+  --primary: #f0b030;
+  --primary-foreground: #071422;
+  --secondary: #1ab0e8;
+  --secondary-foreground: #071422;
+  --accent: #6ec430;
+  --accent-foreground: #071422;
+  --muted: #132234;
+  --muted-foreground: #7fa8c0;
+  --border: #1a3048;
+  --input: #132234;
+  --ring: #f0b030;
+  --chart-1: #f0b030;
+  --chart-2: #1ab0e8;
+  --chart-3: #6ec430;
+  --chart-4: #0099CC;
+  --chart-5: #E8A020;
+  --sidebar: #0d1c2e;
+  --sidebar-foreground: #e8f1f8;
+  --sidebar-primary: #f0b030;
+  --sidebar-primary-foreground: #071422;
+  --sidebar-accent: #1ab0e8;
+  --sidebar-accent-foreground: #071422;
+  --sidebar-border: #1a3048;
+  --sidebar-ring: #f0b030;
 }
 
 @theme inline {
