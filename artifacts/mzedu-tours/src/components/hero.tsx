@@ -10,56 +10,20 @@ import AdventureHeaderAnimation from "./adventure-header-animation"
 
 const heroImages = [
   {
-    src: "/tsavo-elephant.jpg",
-    alt: "Red elephant crossing a dirt road in Tsavo National Park",
+    src: "/hero1.jpeg",
+    alt: "Gerenuk antelope standing on hind legs browsing acacia in Tsavo",
   },
   {
-    src: "/tsavo-national-park-with-elephants-and-wildlife.jpg",
-    alt: "Tsavo National Park with elephants",
+    src: "/hero2.jpeg",
+    alt: "MZEDU Tours 4WD vehicle at Nairobi National Park gate with guests",
   },
   {
-    src: "/tsavo-lion.jpg",
-    alt: "Lion walking down a red dirt road in Tsavo with mountains in the background",
+    src: "/hero3.jpeg",
+    alt: "MZEDU Tours team with guests at national park entrance",
   },
   {
-    src: "/safari-game-drive-vehicle-with-tourists.jpg",
-    alt: "Safari game drive vehicle with tourists",
-  },
-  {
-    src: "/tsavo-zebras.jpg",
-    alt: "Pair of zebras grazing in the green grasslands of Tsavo",
-  },
-  {
-    src: "/african-wildlife-safari-with-zebras-giraffes-and-l.jpg",
-    alt: "African wildlife safari with zebras and giraffes",
-  },
-  {
-    src: "/tsavo-impala.jpg",
-    alt: "Impala antelope with curved horns in Tsavo bush",
-  },
-  {
-    src: "/heroimg1.jpg",
-    alt: "Fleet of vehicles at parking lot",
-  },
-  {
-    src: "/heroimg2.jpg",
-    alt: "Car interior with turquoise styling",
-  },
-  {
-    src: "/selfdrivehero.webp",
-    alt: "Car rental and self-drive service",
-  },
-  {
-    src: "/nairobi-national-park-wildlife-and-landscapes.jpg",
-    alt: "Nairobi National Park wildlife",
-  },
-  {
-    src: "/mount-kilimanjaro-with-elephants-in-amboseli.jpg",
-    alt: "Mount Kilimanjaro with elephants in Amboseli",
-  },
-  {
-    src: "/kenya-diverse-landscapes-mountains-valleys-safari.jpg",
-    alt: "Kenya diverse landscapes",
+    src: "/hero4.jpeg",
+    alt: "Waterbuck resting in the bush at Tsavo National Park",
   },
 ]
 
@@ -160,30 +124,10 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="flex gap-2 mt-8">
-              {heroImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentImageIndex ? "bg-white w-8" : "bg-white/50 hover:bg-white/75"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
-        <div className="animate-bounce">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      </div>
     </section>
   )
 }
