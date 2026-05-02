@@ -1,10 +1,5 @@
 "use client"
-
-"use client"
-
-
 import { useState, useEffect } from "react"
-// next/image replaced
 import { useLocation, Link } from "wouter"
 import {
   Plus,
@@ -90,7 +85,7 @@ export default function AdminBlogPage() {
     }
 
     checkAuth()
-  }, [supabase, router])
+  }, [supabase])
 
   const fetchPosts = async () => {
     if (!supabase) return
@@ -264,7 +259,6 @@ export default function AdminBlogPage() {
         return
       }
 
-      // Upload via Vercel Blob API route
       const uploadFormData = new FormData()
       uploadFormData.append("file", file)
 

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-// next/image replaced
 import { Link } from "wouter"
 import { Calendar, Clock, User, BookOpen, Search, ArrowRight, Filter, X, Settings } from "lucide-react"
 import Navbar from "@/components/navbar"

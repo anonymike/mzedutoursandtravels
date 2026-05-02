@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { X, ChevronLeft, ChevronRight, Phone } from "lucide-react"
-// next/image replaced
 
 const slides = [
   {

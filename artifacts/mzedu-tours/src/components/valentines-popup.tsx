@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
-// next/image replaced
 
 export function ValentinesPopup() {
   const [isOpen, setIsOpen] = useState(false)

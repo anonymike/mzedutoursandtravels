@@ -23,13 +23,11 @@ export function CookieConsent() {
   const handleAccept = () => {
     localStorage.setItem("cookie-consent", "accepted")
     setShowConsent(false)
-    console.log("[v0] Cookie consent accepted")
   }
 
   const handleDecline = () => {
     localStorage.setItem("cookie-consent", "declined")
     setShowConsent(false)
-    console.log("[v0] Cookie consent declined")
   }
 
   const handleClose = () => {

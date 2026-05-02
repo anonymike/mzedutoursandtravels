@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-// next/image replaced
 import { Link } from "wouter"
 import { X, ChevronLeft, ChevronRight, Camera } from "lucide-react"
 import Navbar from "@/components/navbar"
