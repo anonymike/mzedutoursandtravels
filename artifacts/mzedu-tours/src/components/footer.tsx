@@ -81,8 +81,8 @@ export default function Footer() {
               </h4>
               <div className="text-sm text-gray-300 leading-relaxed">
                 <p className="font-medium text-white">Voi, Taita Taveta</p>
-                <p>Opposite AIC Church</p>
-                <p>Before Wells Spring Enterprises</p>
+                <p>Opposite Fayaz Bakers LTD</p>
+                <p>Voi Branch</p>
               </div>
             </div>
           </div>

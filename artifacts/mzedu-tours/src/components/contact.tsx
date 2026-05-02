@@ -51,8 +51,8 @@ export default function Contact() {
             </div>
             <h3 className="font-serif text-lg font-bold text-foreground mb-2">Visit Us</h3>
             <p className="text-foreground font-semibold">Voi, Taita Taveta</p>
-            <p className="text-sm text-muted-foreground mt-2">Opposite AIC Church</p>
-            <p className="text-sm text-muted-foreground">Before Wells spring Enterprises</p>
+            <p className="text-sm text-muted-foreground mt-2">Opposite Fayaz Bakers LTD</p>
+            <p className="text-sm text-muted-foreground">Voi Branch</p>
           </div>
         </div>
 
