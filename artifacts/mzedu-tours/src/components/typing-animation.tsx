@@ -22,6 +22,7 @@ export default function TypingAnimation({ text, speed = 50, className = "" }: Ty
     } else if (displayedText.length === text.length && !isComplete) {
       setIsComplete(true)
     }
+    return
   }, [displayedText, text, speed, isComplete])
 
   return (

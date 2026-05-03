@@ -25,6 +25,7 @@ export function ValentinesPopup() {
       }, 1500)
       return () => clearTimeout(timer)
     }
+    return
   }, [])
 
   const handleClose = () => {

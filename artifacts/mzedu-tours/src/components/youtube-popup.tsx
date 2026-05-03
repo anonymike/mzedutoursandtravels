@@ -13,7 +13,7 @@ export function YouTubePopup() {
     if (hasSeenYouTubePopup) return
 
     // Wait for the safari promo popup to finish first
-    const checkAndShow = () => {
+    const checkAndShow = (): (() => void) | undefined => {
       const safariShown = sessionStorage.getItem("safari_promo_popup_shown")
       if (safariShown) {
         // Show after a short delay so it doesn't overlap
@@ -23,6 +23,7 @@ export function YouTubePopup() {
         }, 3000)
         return () => clearTimeout(timer)
       }
+      return undefined
     }
 
     // Check immediately in case safari popup already shown

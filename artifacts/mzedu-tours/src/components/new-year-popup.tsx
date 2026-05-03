@@ -30,7 +30,9 @@ export function NewYearPopup() {
         }, 1500)
         return () => clearTimeout(timer)
       }
+      return
     }
+    return
   }, [])
 
   const handleClose = () => {

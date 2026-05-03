@@ -47,6 +47,7 @@ export function SafariPromoPopup() {
       }, 1500)
       return () => clearTimeout(timer)
     }
+    return
   }, [])
 
   // Auto-advance slides
