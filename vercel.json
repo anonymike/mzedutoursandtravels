@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "artifacts/mzedu-tours/dist/public",
+  "installCommand": "pnpm install"
+}
