@@ -1,105 +1,159 @@
 "use client"
 
-import { Compass, MapPin, Truck, Car, Navigation, Map, Users, Plane } from "lucide-react"
+import { useState } from "react"
+import { MapPin, ArrowRight } from "lucide-react"
 
-const services = [
+const destinations = [
   {
-    icon: Compass,
-    title: "Game Drives",
-    description: "Guided safari expeditions through Tsavo National Park with expert wildlife spotting",
-    image: "/images/game-drive.jpg",
+    name: "AMBOSELI",
+    tagline: "Land of Giants",
+    description:
+      "Witness massive elephant herds roaming beneath the snow-capped peak of Mount Kilimanjaro. Amboseli is one of Africa's most iconic safari destinations.",
+    image: "/amboseli-elephants.jpg",
+    highlights: ["Big Elephant Herds", "Kilimanjaro Views", "Birdwatching", "Maasai Culture"],
+    color: "from-amber-600/80 to-orange-900/90",
   },
   {
-    icon: MapPin,
-    title: "Private Drop-offs",
-    description: "Personalized transportation to your specific destinations across Kenya",
-    image: "/images/sgr-airport-transfers1.jpg",
+    name: "LUMO CONSERVANCY",
+    tagline: "Wilderness Untouched",
+    description:
+      "A hidden gem bordering Tsavo East & West, Lumo Community Wildlife Sanctuary offers intimate wildlife encounters at exclusive waterholes.",
+    image: "/lumo-elephants.jpg",
+    highlights: ["Waterhole Hides", "Rare Wildlife", "Community Tourism", "Night Safaris"],
+    color: "from-teal-700/80 to-emerald-900/90",
   },
   {
-    icon: Truck,
-    title: "Inter-County Transport",
-    description: "Reliable shuttle services connecting major towns and destinations",
-    image: "/images/intercounty.jpg",
+    name: "TSAVO EAST",
+    tagline: "Speed & Grace",
+    description:
+      "Home to the fastest land animal on earth. Tsavo East's open plains make cheetah sightings legendary — vast, raw and breathtaking.",
+    image: "/tsavo-east-cheetah.jpg",
+    highlights: ["Cheetah Sightings", "Red Elephants", "Galana River", "Vast Open Plains"],
+    color: "from-red-700/80 to-rose-900/90",
   },
   {
-    icon: Car,
-    title: "Car Hire",
-    description: "Fleet of well-maintained vehicles available for your travel needs",
-    image: "/images/car-hire1.jpg",
-  },
-  {
-    icon: Navigation,
-    title: "Self-Drive",
-    description: "Explore at your own pace with our self-drive vehicle options",
-    image: "/images/selfdrive.jpg",
-  },
-  {
-    icon: Map,
-    title: "Road Trips",
-    description: "Scenic journeys through Kenya with planned itineraries and local insights",
-    image: "/images/road-20trips.jpg",
-  },
-  {
-    icon: Users,
-    title: "Corporate Tours",
-    description: "Team building and corporate retreat packages for companies",
-    image: "/images/corporate-20tours1.jpg",
-  },
-  {
-    icon: Plane,
-    title: "SGR & Airport Transfers",
-    description: "Convenient airport pickup and drop-off services with professional drivers",
-    image: "/images/sgr-20-26-20airport-20transfers.jpg",
+    name: "TSAVO WEST",
+    tagline: "Stripes & Savanna",
+    description:
+      "Dramatic volcanic landscapes, crystal springs and iconic zebra herds define Tsavo West. A paradise of contrasts with some of Kenya's best scenery.",
+    image: "/tsavo-west-zebra.jpg",
+    highlights: ["Zebra Migration", "Mzima Springs", "Rhino Sanctuary", "Volcanic Hills"],
+    color: "from-slate-700/80 to-gray-900/90",
   },
 ]
 
+function DestinationCard({ destination }: { destination: typeof destinations[0] }) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <div
+      className="relative overflow-hidden rounded-2xl cursor-pointer group h-[420px] md:h-[500px] shadow-xl"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onTouchStart={() => setHovered(true)}
+      onTouchEnd={() => setTimeout(() => setHovered(false), 2500)}
+    >
+      {/* Background Image */}
+      <img
+        src={destination.image}
+        alt={destination.name}
+        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out ${
+          hovered ? "scale-110" : "scale-100"
+        }`}
+      />
+
+      {/* Always-visible bottom gradient with name */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 ${
+          hovered ? "opacity-0" : "opacity-100"
+        }`}
+      />
+      <div
+        className={`absolute bottom-0 left-0 right-0 p-6 transition-all duration-500 ${
+          hovered ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+        }`}
+      >
+        <div className="flex items-center gap-2 mb-1">
+          <MapPin className="w-4 h-4 text-amber-400" />
+          <span className="text-amber-400 text-xs font-semibold uppercase tracking-widest">Kenya</span>
+        </div>
+        <h3 className="font-serif text-3xl font-bold text-white tracking-wide">{destination.name}</h3>
+        <p className="text-white/70 text-sm mt-1 italic">{destination.tagline}</p>
+      </div>
+
+      {/* Hover overlay — full content reveal */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${destination.color} flex flex-col justify-end p-7 transition-all duration-500 ${
+          hovered ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Top badge */}
+        <div className="absolute top-6 left-6 flex items-center gap-2">
+          <MapPin className="w-4 h-4 text-amber-300" />
+          <span className="text-amber-300 text-xs font-semibold uppercase tracking-widest">Kenya Safari</span>
+        </div>
+
+        <div>
+          <h3 className="font-serif text-3xl md:text-4xl font-bold text-white mb-1 tracking-wide">
+            {destination.name}
+          </h3>
+          <p className="text-amber-300 text-sm italic mb-4">{destination.tagline}</p>
+          <p className="text-white/90 text-sm leading-relaxed mb-5">{destination.description}</p>
+
+          {/* Highlights */}
+          <div className="grid grid-cols-2 gap-2 mb-6">
+            {destination.highlights.map((h) => (
+              <div key={h} className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
+                <span className="text-white/80 text-xs">{h}</span>
+              </div>
+            ))}
+          </div>
+
+          <button className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 group/btn backdrop-blur-sm">
+            Explore Destination
+            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-6 md:px-12 bg-gradient-to-b from-white via-amber-50 to-white">
+    <section id="services" className="py-24 px-6 md:px-12 bg-gradient-to-b from-[#0a1a0f] via-[#0f2c1e] to-[#0a1a0f]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-12 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
-            <span className="text-sm font-semibold text-primary">OUR SERVICES</span>
-            <div className="w-12 h-0.5 bg-gradient-to-l from-primary to-accent rounded-full" />
+          <div className="inline-flex items-center gap-3 mb-5">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent to-amber-500" />
+            <span className="text-amber-400 text-xs font-bold uppercase tracking-[0.3em]">Safari Destinations</span>
+            <div className="w-16 h-px bg-gradient-to-l from-transparent to-amber-500" />
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Travel Solutions Tailored for You
+          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight">
+            Where the Wild
+            <span className="block bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
+              Calls You Home
+            </span>
           </h2>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
+            Hover over each destination to discover what awaits. More wild places coming soon.
+          </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => {
-            const Icon = service.icon
-            return (
-              <div
-                key={index}
-                className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-80"
-              >
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    src={service.image || "/placeholder.svg"}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 group-hover:from-black/95 group-hover:via-black/70 transition-colors duration-300" />
-                </div>
+        {/* Destination Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {destinations.map((destination) => (
+            <DestinationCard key={destination.name} destination={destination} />
+          ))}
+        </div>
 
-                {/* Content Overlay */}
-                <div className="relative h-full flex flex-col justify-end p-8 z-10">
-                  <div className="bg-white/20 backdrop-blur-sm w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/30 transition">
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-serif text-xl font-bold text-white mb-3">{service.title}</h3>
-                  <p className="text-sm text-white/90 leading-relaxed">{service.description}</p>
-                </div>
-              </div>
-            )
-          })}
+        {/* Coming soon strip */}
+        <div className="mt-8 text-center">
+          <span className="inline-block border border-white/10 text-white/40 text-xs uppercase tracking-widest px-6 py-2.5 rounded-full">
+            ✦ More destinations being added soon ✦
+          </span>
         </div>
       </div>
     </section>
