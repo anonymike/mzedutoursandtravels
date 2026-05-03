@@ -35,6 +35,10 @@ export interface BatchOptions {
   onProgress?: (completed: number, total: number, item: unknown) => void;
 }
 
+const BatchAbortError = (pRetry as typeof pRetry & {
+  AbortError: new (error: Error) => Error;
+}).AbortError;
+
 export function isRateLimitError(error: unknown): boolean {
   const errorMsg = error instanceof Error ? error.message : String(error);
   return (
@@ -74,7 +78,7 @@ export async function batchProcess<T, R>(
             if (isRateLimitError(error)) {
               throw error;
             }
-            throw new pRetry.AbortError(
+            throw new BatchAbortError(
               error instanceof Error ? error : new Error(String(error))
             );
           }
@@ -112,10 +116,12 @@ export async function batchProcessWithSSE<T, R>(
           minTimeout,
           maxTimeout,
           factor: 2,
-          onFailedAttempt: (error) => {
-            if (!isRateLimitError(error)) {
-              throw new pRetry.AbortError(
-                error instanceof Error ? error : new Error(String(error))
+          onFailedAttempt: (error: { error: unknown }) => {
+            if (!isRateLimitError(error.error)) {
+              throw new BatchAbortError(
+                error.error instanceof Error
+                  ? error.error
+                  : new Error(String(error.error))
               );
             }
           },
