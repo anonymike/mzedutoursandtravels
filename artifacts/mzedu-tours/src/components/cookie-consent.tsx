@@ -18,6 +18,7 @@ export function CookieConsent() {
       }, 1000)
       return () => clearTimeout(timer)
     }
+    return
   }, [])
 
   const handleAccept = () => {

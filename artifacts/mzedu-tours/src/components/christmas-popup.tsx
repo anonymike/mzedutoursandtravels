@@ -27,6 +27,7 @@ export function ChristmasPopup() {
       }, 1500)
       return () => clearTimeout(timer)
     }
+    return
   }, [])
 
   const handleClose = () => {
